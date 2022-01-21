@@ -46,7 +46,7 @@ public class ABuilderServer extends NanoHTTPD {
             // 格式检查
             if (!params.containsKey("database") || !params.containsKey("projectId") ||
                     !params.containsKey("inputPath") || !params.containsKey("outputPath")
-                    || !params.containsKey("rmIns")) {
+                    || !params.containsKey("sootId")) {
                 return NanoHTTPD.newFixedLengthResponse(Response.Status.INTERNAL_ERROR, NanoHTTPD.MIME_HTML,
                         "/soot param error");
             }
@@ -62,8 +62,8 @@ public class ABuilderServer extends NanoHTTPD {
             ABuilderServerConfig.v().setProjectId(params.get("projectId"));
             String inputPath = params.get("inputPath");
             String outputPath = params.get("outputPath");
-            String rmIns = params.get("rmIns");
-            ABuilderServerConfig.v().setFirst(rmIns.equals("0"));
+            String sootId = params.get("sootId");
+            ABuilderServerConfig.v().setFirst(sootId.equals("0"));
 
             // 1. 将antrance ins拷贝到inputPath下
             System.out.println("[antrance builder server] copy antrance ins to " + inputPath);
@@ -83,7 +83,7 @@ public class ABuilderServer extends NanoHTTPD {
             System.out.println("[projectId] " + ABuilderServerConfig.v().getProjectId());
             System.out.println("[inputPath] " + inputPath);
             System.out.println("[outputPath] " + outputPath);
-            System.out.println("[rmIns] " + rmIns);
+            System.out.println("[sootId] " + sootId);
             System.out.println("==================================================");
             long startTime = System.currentTimeMillis();
 
@@ -106,8 +106,8 @@ public class ABuilderServer extends NanoHTTPD {
             System.out.println("[antrance builder server] End");
             System.out.println("==================================================");
 
-            // 3. 如果rmIns不为0, 则删除[上一个]outputPath下的antrance ins, 防止类冲突
-            if (!rmIns.equals("0")) {
+            // 3. 如果sootId不为0, 则删除[上一个]outputPath下的antrance ins, 防止类冲突
+            if (!sootId.equals("0")) {
                 String preOutputPath = ABuilderServerConfig.v().getPreOutputPath();
                 System.out.println("[antrance builder server] clean antrance ins in " + preOutputPath);
                 for (String antranceIns : ABuilderServerConfig.v().getAntranceInses()) {
