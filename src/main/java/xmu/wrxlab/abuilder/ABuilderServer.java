@@ -106,19 +106,6 @@ public class ABuilderServer extends NanoHTTPD {
             System.out.println("[antrance builder server] End");
             System.out.println("==================================================");
 
-            // 3. 如果sootId不为0, 则删除[上一个]outputPath下的antrance ins, 防止类冲突
-            if (!sootId.equals("0")) {
-                String preOutputPath = ABuilderServerConfig.v().getPreOutputPath();
-                System.out.println("[antrance builder server] clean antrance ins in " + preOutputPath);
-                for (String antranceIns : ABuilderServerConfig.v().getAntranceInses()) {
-                    File file = new File(preOutputPath, antranceIns+".class");
-                    if (file.exists()) {
-                        file.delete();
-                    }
-                }
-            }
-            ABuilderServerConfig.v().setPreOutputPath(outputPath);
-
             // 别忘了解锁
             oneSoot.set(false);
 
