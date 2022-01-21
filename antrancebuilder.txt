@@ -1,25 +1,223 @@
-[全局gradle配置]
+// ==========================================================================================
+// ==========================================================================================
+<<<<<<<<<<<<<<<<<<<<全局gradle配置>>>>>>>>>>>>>>>>>>>>
 maven {
-            url uri('/home/android/software/plugins/abuilder')
-        }
+    url uri('/home/hzy/hzy/projects/android/auiauto/database/abuilder')
+}
 classpath 'xmu.wrxlab:abuilder:1.0.0'
-[app gradle配置]
+<<<<<<<<<<<<<<<<<<<<app gradle配置>>>>>>>>>>>>>>>>>>>>
 apply plugin: 'abuilder'
 abuilder {
-    database "/home/android/project/xmu_wrxlab/auiauto/database"
-    projectId = "APhotoManager-0.6.4.180314"
-    mainActivity = "de.k3b.android.androFotoFinder.FotoGalleryActivity"
+    database "/home/hzy/hzy/projects/android/auiauto/database"
+    projectId = "AmazeFileManager-1837"
+    mainActivity = "com.amaze.filemanager.activities.MainActivity"
 }
 dependencies {
     implementation'org.nanohttpd:nanohttpd:2.2.0'
 }
-[manifest配置]
+<<<<<<<<<<<<<<<<<<<<manifest配置>>>>>>>>>>>>>>>>>>>>
 <uses-permission android:name="android.permission.INTERNET"/>
 android:usesCleartextTraffic="true"
-
-//apply plugin: 'abuilder'
-//abuilder {
-//    database "/home/android/project/xmu_wrxlab/auiauto/database"
-//    projectId = "Frost-for-Facebook-1323"
-//    mainActivity = "com.pitchedapps.frost.StartActivity"
-//}
+// ==========================================================================================
+// ==========================================================================================
+<<<<<<<<<<<<<<<<<<<<全局gradle配置>>>>>>>>>>>>>>>>>>>>
+maven {
+    url uri('/home/hzy/hzy/projects/android/auiauto/database/abuilder')
+}
+classpath 'xmu.wrxlab:abuilder:1.0.0'
+<<<<<<<<<<<<<<<<<<<<app gradle配置>>>>>>>>>>>>>>>>>>>>
+apply plugin: 'abuilder'
+abuilder {
+    database "/home/hzy/hzy/projects/android/auiauto/database"
+    projectId = "ActivityDiary-118"
+    mainActivity = "de.rampro.activitydiary.ui.main.MainActivity"
+}
+dependencies {
+    implementation'org.nanohttpd:nanohttpd:2.2.0'
+}
+<<<<<<<<<<<<<<<<<<<<manifest配置>>>>>>>>>>>>>>>>>>>>
+<uses-permission android:name="android.permission.INTERNET"/>
+android:usesCleartextTraffic="true"
+// ==========================================================================================
+// ==========================================================================================
+<<<<<<<<<<<<<<<<<<<<全局gradle配置>>>>>>>>>>>>>>>>>>>>
+maven {
+    url uri('/home/hzy/hzy/projects/android/auiauto/database/abuilder')
+}
+classpath 'xmu.wrxlab:abuilder:1.0.0'
+<<<<<<<<<<<<<<<<<<<<app gradle配置>>>>>>>>>>>>>>>>>>>>
+apply plugin: 'abuilder'
+abuilder {
+    database "/home/hzy/hzy/projects/android/auiauto/database"
+    projectId = "and-bible-261"
+    mainActivity = "net.bible.android.activity.StartupActivity"
+}
+dependencies {
+    implementation'org.nanohttpd:nanohttpd:2.2.0'
+}
+<<<<<<<<<<<<<<<<<<<<manifest配置>>>>>>>>>>>>>>>>>>>>
+<uses-permission android:name="android.permission.INTERNET"/>
+android:usesCleartextTraffic="true"
+// ==========================================================================================
+// ==========================================================================================
+<<<<<<<<<<<<<<<<<<<<全局gradle配置>>>>>>>>>>>>>>>>>>>>
+maven {
+    url uri('/home/hzy/hzy/projects/android/auiauto/database/abuilder')
+}
+classpath 'xmu.wrxlab:abuilder:1.0.0'
+<<<<<<<<<<<<<<<<<<<<app gradle配置>>>>>>>>>>>>>>>>>>>>
+apply plugin: 'abuilder'
+abuilder {
+    database "/home/hzy/hzy/projects/android/auiauto/database"
+    projectId = "Anki-Android-4977"
+    mainActivity = "com.ichi2.anki.IntentHandler"
+}
+dependencies {
+    implementation'org.nanohttpd:nanohttpd:2.2.0'
+}
+<<<<<<<<<<<<<<<<<<<<manifest配置>>>>>>>>>>>>>>>>>>>>
+<uses-permission android:name="android.permission.INTERNET"/>
+android:usesCleartextTraffic="true"
+// ==========================================================================================
+// ==========================================================================================
+<<<<<<<<<<<<<<<<<<<<全局gradle配置>>>>>>>>>>>>>>>>>>>>
+maven {
+    url uri('/home/hzy/hzy/projects/android/auiauto/database/abuilder')
+}
+classpath 'xmu.wrxlab:abuilder:1.0.0'
+<<<<<<<<<<<<<<<<<<<<app gradle配置>>>>>>>>>>>>>>>>>>>>
+apply plugin: 'abuilder'
+abuilder {
+    database "/home/hzy/hzy/projects/android/auiauto/database"
+    projectId = "collect-3222"
+    mainActivity = "org.odk.collect.android.activities.SplashScreenActivity"
+}
+dependencies {
+    implementation'org.nanohttpd:nanohttpd:2.2.0'
+}
+<<<<<<<<<<<<<<<<<<<<manifest配置>>>>>>>>>>>>>>>>>>>>
+<uses-permission android:name="android.permission.INTERNET"/>
+android:usesCleartextTraffic="true"
+// ==========================================================================================
+// ==========================================================================================
+<<<<<<<<<<<<<<<<<<<<全局gradle配置>>>>>>>>>>>>>>>>>>>>
+maven {
+    url uri('/home/hzy/hzy/projects/android/auiauto/database/abuilder')
+}
+classpath 'xmu.wrxlab:abuilder:1.0.0'
+<<<<<<<<<<<<<<<<<<<<app gradle配置>>>>>>>>>>>>>>>>>>>>
+apply plugin: 'abuilder'
+abuilder {
+    database "/home/hzy/hzy/projects/android/auiauto/database"
+    projectId = "commons-1391"
+    mainActivity = "fr.free.nrw.commons.auth.LoginActivity"
+}
+dependencies {
+    implementation'org.nanohttpd:nanohttpd:2.2.0'
+}
+<<<<<<<<<<<<<<<<<<<<manifest配置>>>>>>>>>>>>>>>>>>>>
+<uses-permission android:name="android.permission.INTERNET"/>
+android:usesCleartextTraffic="true"
+// ==========================================================================================
+// ==========================================================================================
+<<<<<<<<<<<<<<<<<<<<全局gradle配置>>>>>>>>>>>>>>>>>>>>
+maven {
+    url uri('/home/hzy/hzy/projects/android/auiauto/database/abuilder')
+}
+classpath 'xmu.wrxlab:abuilder:1.0.0'
+<<<<<<<<<<<<<<<<<<<<app gradle配置>>>>>>>>>>>>>>>>>>>>
+apply plugin: 'abuilder'
+abuilder {
+    database "/home/hzy/hzy/projects/android/auiauto/database"
+    projectId = "nextcloud-1918"
+    mainActivity = "com.owncloud.android.ui.activity.FileDisplayActivity"
+}
+dependencies {
+    implementation'org.nanohttpd:nanohttpd:2.2.0'
+}
+<<<<<<<<<<<<<<<<<<<<manifest配置>>>>>>>>>>>>>>>>>>>>
+<uses-permission android:name="android.permission.INTERNET"/>
+android:usesCleartextTraffic="true"
+// ==========================================================================================
+// ==========================================================================================
+<<<<<<<<<<<<<<<<<<<<全局gradle配置>>>>>>>>>>>>>>>>>>>>
+maven {
+    url uri('/home/hzy/hzy/projects/android/auiauto/database/abuilder')
+}
+classpath 'xmu.wrxlab:abuilder:1.0.0'
+<<<<<<<<<<<<<<<<<<<<app gradle配置>>>>>>>>>>>>>>>>>>>>
+apply plugin: 'abuilder'
+abuilder {
+    database "/home/hzy/hzy/projects/android/auiauto/database"
+    projectId = "open-event-attendee-2198"
+    mainActivity = "org.fossasia.openevent.general.MainActivity"
+}
+dependencies {
+    implementation'org.nanohttpd:nanohttpd:2.2.0'
+}
+<<<<<<<<<<<<<<<<<<<<manifest配置>>>>>>>>>>>>>>>>>>>>
+<uses-permission android:name="android.permission.INTERNET"/>
+android:usesCleartextTraffic="true"
+// ==========================================================================================
+// ==========================================================================================
+<<<<<<<<<<<<<<<<<<<<全局gradle配置>>>>>>>>>>>>>>>>>>>>
+maven {
+    url uri('/home/hzy/hzy/projects/android/auiauto/database/abuilderag2')
+}
+classpath 'xmu.wrxlab:abuilderag2:1.0.0'
+<<<<<<<<<<<<<<<<<<<<app gradle配置>>>>>>>>>>>>>>>>>>>>
+apply plugin: 'abuilderag2'
+abuilderag2 {
+    database "/home/hzy/hzy/projects/android/auiauto/database"
+    projectId = "openlauncher-67"
+    mainActivity = "com.benny.openlauncher.activity.InitActivity"
+    sourcePath = "/home/hzy/hzy/projects/android/abenchmark/openlauncher/openlauncher-67-bug/app/src/main/java"
+}
+dependencies {
+    compile 'org.nanohttpd:nanohttpd:2.2.0'
+}
+<<<<<<<<<<<<<<<<<<<<manifest配置>>>>>>>>>>>>>>>>>>>>
+<uses-permission android:name="android.permission.INTERNET"/>
+android:usesCleartextTraffic="true"
+// ==========================================================================================
+// ==========================================================================================
+<<<<<<<<<<<<<<<<<<<<全局gradle配置>>>>>>>>>>>>>>>>>>>>
+maven {
+    url uri('/home/hzy/hzy/projects/android/auiauto/database/abuilder')
+}
+classpath 'xmu.wrxlab:abuilder:1.0.0'
+<<<<<<<<<<<<<<<<<<<<app gradle配置>>>>>>>>>>>>>>>>>>>>
+apply plugin: 'abuilder'
+abuilder {
+    database "/home/hzy/hzy/projects/android/auiauto/database"
+    projectId = "osmeditor4android-729"
+    mainActivity = "de.blau.android.Splash"
+}
+dependencies {
+    implementation'org.nanohttpd:nanohttpd:2.2.0'
+}
+<<<<<<<<<<<<<<<<<<<<manifest配置>>>>>>>>>>>>>>>>>>>>
+<uses-permission android:name="android.permission.INTERNET"/>
+android:usesCleartextTraffic="true"
+// ==========================================================================================
+// ==========================================================================================
+<<<<<<<<<<<<<<<<<<<<全局gradle配置>>>>>>>>>>>>>>>>>>>>
+maven {
+    url uri('/home/hzy/hzy/projects/android/auiauto/database/abuilder')
+}
+classpath 'xmu.wrxlab:abuilder:1.0.0'
+<<<<<<<<<<<<<<<<<<<<app gradle配置>>>>>>>>>>>>>>>>>>>>
+apply plugin: 'abuilder'
+abuilder {
+    database "/home/hzy/hzy/projects/android/auiauto/database"
+    projectId = "Scarlet-Notes-114"
+    mainActivity = "com.maubis.scarlet.base.MainActivity"
+}
+dependencies {
+    implementation'org.nanohttpd:nanohttpd:2.2.0'
+}
+<<<<<<<<<<<<<<<<<<<<manifest配置>>>>>>>>>>>>>>>>>>>>
+<uses-permission android:name="android.permission.INTERNET"/>
+android:usesCleartextTraffic="true"
+// ==========================================================================================
+// ==========================================================================================
