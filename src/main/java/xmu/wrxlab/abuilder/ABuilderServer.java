@@ -11,11 +11,15 @@ import soot.PackManager;
 import soot.Transform;
 import xmu.wrxlab.abuilder.instrumentor.Instrumentor;
 
-/** 执行antrance builder插件的任务, 分离是为了避免插件依赖冲突 */
+/**
+ * 执行antrance builder插件的任务, 分离是为了避免插件依赖冲突
+ */
 public class ABuilderServer extends NanoHTTPD {
     private final static int myPort = 8081;
 
-    /** 一次只能有一个soot任务执行 */
+    /**
+     * 一次只能有一个soot任务执行
+     */
     public AtomicBoolean oneSoot = new AtomicBoolean(false);
 
     public ABuilderServer() throws IOException {
@@ -35,6 +39,7 @@ public class ABuilderServer extends NanoHTTPD {
 
     /**
      * http server路由.
+     *
      * @param session NanoHttpd默认参数
      * @return 相应请求的返回值
      */
@@ -68,9 +73,9 @@ public class ABuilderServer extends NanoHTTPD {
             // 1. 将antrance ins拷贝到inputPath下
             System.out.println("[antrance builder server] copy antrance ins to " + inputPath);
             for (String antranceIns : ABuilderServerConfig.v().getAntranceInses()) {
-                File kernelIns = new File(ABuilderServerConfig.v().getKernel(), antranceIns+".class");
+                File kernelIns = new File(ABuilderServerConfig.v().getKernel(), antranceIns + ".class");
                 try {
-                    FileUtils.copyFile(kernelIns, new File(inputPath, antranceIns+".class"));
+                    FileUtils.copyFile(kernelIns, new File(inputPath, antranceIns + ".class"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -101,7 +106,7 @@ public class ABuilderServer extends NanoHTTPD {
             PackManager.v().getPack("wjtp").add(new Transform("wjtp.myTrans", hzyInstrumentor));
             soot.Main.main(args);
 
-            System.out.println("[antrance builder server] time = " + (System.currentTimeMillis()-startTime));
+            System.out.println("[antrance builder server] time = " + (System.currentTimeMillis() - startTime));
             System.out.println("==================================================");
             System.out.println("[antrance builder server] End");
             System.out.println("==================================================");

@@ -2,18 +2,26 @@ package xmu.wrxlab.abuilder;
 
 import java.io.File;
 
-/** antrance builder配置 */
+/**
+ * antrance builder配置
+ */
 public class ABuilderServerConfig {
     private String database;
     private String projectId;
 
-    /** 重要, gradle任务有时会把classes分成多个文件, 调用多次soot, 这里判断是不是第一个, 防止cfg, idToSig等错误的初始化 */
+    /**
+     * 重要, gradle任务有时会把classes分成多个文件, 调用多次soot, 这里判断是不是第一个, 防止cfg, debugjimple, idToSig, stmtTable等错误的初始化
+     */
     private boolean first;
 
-    /** 重要, 语句表大小由AntranceInsTransform计算, 由AntranceInsConfigTransform配置 */
+    /**
+     * 重要, 语句表大小由AntranceInsTransform计算, 由AntranceInsConfigTransform配置
+     */
     private int stmtTableSize = 99999;
 
-    /** 重要, 桩类名, 0号一定要为AntranceIns类 */
+    /**
+     * 重要, 桩类名, 0号一定要为AntranceIns类
+     */
     private final String[] antranceInses = {
             "AntranceIns", "UnCaughtExceptionHandler", "UnCaughtExceptionHandler$1"
     };
@@ -63,6 +71,7 @@ public class ABuilderServerConfig {
     }
 
     private static ABuilderServerConfig myConfig = new ABuilderServerConfig();
+
     public static ABuilderServerConfig v() {
         return myConfig;
     }

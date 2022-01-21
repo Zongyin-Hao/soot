@@ -14,7 +14,9 @@ import soot.util.Chain;
 import xmu.wrxlab.abuilder.ABuilderServerConfig;
 
 public class AntranceInsConfigTransform {
-    /** Antrance类 */
+    /**
+     * Antrance类
+     */
     private final SootClass antranceIns;
 
     public AntranceInsConfigTransform(SootClass antranceIns) {
@@ -30,9 +32,9 @@ public class AntranceInsConfigTransform {
                 Chain<Unit> units = body.getUnits();
                 Iterator<Unit> stmtIt = units.snapshotIterator();
                 while (stmtIt.hasNext()) {
-                    Stmt stmt = (Stmt)stmtIt.next();
+                    Stmt stmt = (Stmt) stmtIt.next();
                     if (stmt instanceof AssignStmt) {
-                        AssignStmt assignStmt = (AssignStmt)stmt;
+                        AssignStmt assignStmt = (AssignStmt) stmt;
                         String sig = assignStmt.getLeftOp().toString();
                         switch (sig) {
                             case "<AntranceIns: java.lang.String projectId>":

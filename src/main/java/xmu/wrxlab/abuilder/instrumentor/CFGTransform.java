@@ -30,7 +30,9 @@ import xmu.wrxlab.abuilder.utils.SimpleJson;
  */
 public class CFGTransform {
     private final ArrayList<SootClass> myClasses;
-    /** 用于关联语句和对应的字节码行号, 每遍历到一个新函数时会初始化 */
+    /**
+     * 用于关联语句和对应的字节码行号, 每遍历到一个新函数时会初始化
+     */
     private Map<Unit, Integer> stmt_id;
 
     public CFGTransform(ArrayList<SootClass> myClasses) {
@@ -83,7 +85,7 @@ public class CFGTransform {
             // 记录类对应的路径, 作为cfg的json文件名, 从而在创建文件时保存到相应路径
             String jsonPath = curClass.getName().replace(".", "/") + ".json";
             File jsonFile = new File(cfg, jsonPath);
-            if(!jsonFile.getParentFile().exists()) {
+            if (!jsonFile.getParentFile().exists()) {
                 jsonFile.getParentFile().mkdirs();
             }
 
@@ -163,39 +165,39 @@ public class CFGTransform {
 
     private String visitIfStmt(IfStmt stmt) {
         int jid = stmt_id.get(stmt);
-        return jid+"@"+getLineNumber(stmt)+"@br@"+
-                stmt_id.get(stmt.getTarget())+"#"+(jid+1)+"@"+(stmt.fallsThrough()?"1":"0");
+        return jid + "@" + getLineNumber(stmt) + "@br@" +
+                stmt_id.get(stmt.getTarget()) + "#" + (jid + 1) + "@" + (stmt.fallsThrough() ? "1" : "0");
     }
 
     private String visitLookupSwitchStmt(LookupSwitchStmt stmt) {
-        StringBuilder ans = new StringBuilder(stmt_id.get(stmt)+"@"+getLineNumber(stmt)+"@br@"+
+        StringBuilder ans = new StringBuilder(stmt_id.get(stmt) + "@" + getLineNumber(stmt) + "@br@" +
                 stmt_id.get(stmt.getDefaultTarget()));
         int caseNum = stmt.getTargetCount();
         for (int i = 0; i < caseNum; i++) {
             ans.append("#").append(stmt_id.get(stmt.getTarget(i)));
         }
-        ans.append("@").append((stmt.fallsThrough()?"1":"0"));
+        ans.append("@").append((stmt.fallsThrough() ? "1" : "0"));
         return ans.toString();
     }
 
     private String visitTableSwitchStmt(TableSwitchStmt stmt) {
-        StringBuilder ans = new StringBuilder(stmt_id.get(stmt)+"@"+getLineNumber(stmt)+"@br@"+
+        StringBuilder ans = new StringBuilder(stmt_id.get(stmt) + "@" + getLineNumber(stmt) + "@br@" +
                 stmt_id.get(stmt.getDefaultTarget()));
         int caseNum = stmt.getTargets().size();
         for (int i = 0; i < caseNum; i++) {
             ans.append("#").append(stmt_id.get(stmt.getTarget(i)));
         }
-        ans.append("@").append((stmt.fallsThrough()?"1":"0"));
+        ans.append("@").append((stmt.fallsThrough() ? "1" : "0"));
         return ans.toString();
     }
 
     private String visitGotoStmt(GotoStmt stmt) {
-        return stmt_id.get(stmt)+"@"+getLineNumber(stmt)+"@gt@"+
-                stmt_id.get(stmt.getTarget())+"@"+(stmt.fallsThrough()?"1":"0");
+        return stmt_id.get(stmt) + "@" + getLineNumber(stmt) + "@gt@" +
+                stmt_id.get(stmt.getTarget()) + "@" + (stmt.fallsThrough() ? "1" : "0");
     }
 
     private String visitNormalStmt(Stmt stmt) {
-        return stmt_id.get(stmt)+"@"+getLineNumber(stmt)+"@n@@"+(stmt.fallsThrough()?"1":"0");
+        return stmt_id.get(stmt) + "@" + getLineNumber(stmt) + "@n@@" + (stmt.fallsThrough() ? "1" : "0");
     }
 
     private int getLineNumber(Stmt s) {

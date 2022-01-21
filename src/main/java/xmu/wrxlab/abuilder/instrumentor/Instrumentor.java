@@ -12,9 +12,13 @@ import xmu.wrxlab.abuilder.ABuilderServerConfig;
  * 运行4个transform: cfg, antrance ins, antrance ins config, debug
  */
 public class Instrumentor extends SceneTransformer {
-    /** 过滤后的应用类 */
+    /**
+     * 过滤后的应用类
+     */
     private final ArrayList<SootClass> myClasses;
-    /** Antrance类 */
+    /**
+     * Antrance类
+     */
     private SootClass antranceIns;
 
     public Instrumentor() {

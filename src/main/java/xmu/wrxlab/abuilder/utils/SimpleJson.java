@@ -1,6 +1,8 @@
 package xmu.wrxlab.abuilder.utils;
 
-/** 自己写个简单的json */
+/**
+ * 自己写个简单的json
+ */
 public class SimpleJson {
     private StringBuilder ans;
 

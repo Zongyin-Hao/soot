@@ -20,9 +20,13 @@ import xmu.wrxlab.abuilder.ABuilderServerConfig;
  * 生成插桩后的jimple字节码目录, 用于调试
  */
 public class DebugJimpleTransform {
-    /** 过滤后的应用类 */
+    /**
+     * 过滤后的应用类
+     */
     private final ArrayList<SootClass> myClasses;
-    /** AntranceIns */
+    /**
+     * AntranceIns
+     */
     private SootClass antranceIns;
 
     public DebugJimpleTransform(ArrayList<SootClass> myClasses, SootClass antranceIns) {
@@ -66,12 +70,12 @@ public class DebugJimpleTransform {
                     PatchingChain<Unit> units = body.getUnits();
                     Iterator<Unit> stmtIt = units.snapshotIterator();
                     out.write("--------------------------------------------------\n");
-                    out.write(curMethod.getSignature()+"\n");
+                    out.write(curMethod.getSignature() + "\n");
                     out.write("--------------------------------------------------\n");
                     while (stmtIt.hasNext()) {
                         Stmt stmt = (Stmt) stmtIt.next();
                         out.write(String.format("[%06d]", getLineNumber(stmt)));
-                        out.write(stmt+"\n");
+                        out.write(stmt + "\n");
                     } // end of while stmtIt.hasNext()
                 } // end of while methodIterator.hasNext()
 
@@ -100,12 +104,12 @@ public class DebugJimpleTransform {
                 Chain<Unit> units = body.getUnits();
                 Iterator<Unit> stmtIt = units.snapshotIterator();
                 out.write("--------------------------------------------------\n");
-                out.write(curMethod.getSignature()+"\n");
+                out.write(curMethod.getSignature() + "\n");
                 out.write("--------------------------------------------------\n");
                 while (stmtIt.hasNext()) {
                     Stmt stmt = (Stmt) stmtIt.next();
                     out.write(String.format("[%06d]", getLineNumber(stmt)));
-                    out.write(stmt+"\n");
+                    out.write(stmt + "\n");
                 } // end of while stmtIt.hasNext()
             } // end of while methodIterator.hasNext()
 
