@@ -18,9 +18,19 @@ public class AntranceInsConfigTransform {
      * Antrance类
      */
     private final SootClass antranceIns;
+    /**
+     * 用户配置的项目名
+     */
+    private String projectId;
+    /**
+     * Instrumentor传入
+     */
+    private int stmtTableSize;
 
-    public AntranceInsConfigTransform(SootClass antranceIns) {
+    public AntranceInsConfigTransform(SootClass antranceIns, String projectId, int stmtTableSize) {
         this.antranceIns = antranceIns;
+        this.projectId = projectId;
+        this.stmtTableSize = stmtTableSize;
     }
 
     // 将gradle配置以修改字节码的形式传给Callback
@@ -38,10 +48,10 @@ public class AntranceInsConfigTransform {
                         String sig = assignStmt.getLeftOp().toString();
                         switch (sig) {
                             case "<AntranceIns: java.lang.String projectId>":
-                                assignStmt.setRightOp(StringConstant.v(ABuilderServerConfig.v().getProjectId()));
+                                assignStmt.setRightOp(StringConstant.v(projectId));
                                 break;
                             case "<AntranceIns: int stmtTableSize>":
-                                assignStmt.setRightOp(IntConstant.v(ABuilderServerConfig.v().getStmtTableSize()));
+                                assignStmt.setRightOp(IntConstant.v(stmtTableSize));
                                 break;
                         }
                     } // end of if stmt instanceof AssignStmt

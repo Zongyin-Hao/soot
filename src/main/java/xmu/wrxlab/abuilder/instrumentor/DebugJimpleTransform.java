@@ -21,6 +21,18 @@ import xmu.wrxlab.abuilder.ABuilderServerConfig;
  */
 public class DebugJimpleTransform {
     /**
+     * Instrumentor传入
+     */
+    private String database;
+    /**
+     * Instrumentor传入
+     */
+    private String projectId;
+    /**
+     * Instrumentor传入
+     */
+    private boolean first;
+    /**
      * 过滤后的应用类
      */
     private final ArrayList<SootClass> myClasses;
@@ -29,19 +41,23 @@ public class DebugJimpleTransform {
      */
     private SootClass antranceIns;
 
-    public DebugJimpleTransform(ArrayList<SootClass> myClasses, SootClass antranceIns) {
+    public DebugJimpleTransform(ArrayList<SootClass> myClasses, SootClass antranceIns,
+                                String database, String projectId, boolean first) {
         this.myClasses = myClasses;
         this.antranceIns = antranceIns;
+        this.database = database;
+        this.projectId = projectId;
+        this.first = first;
     }
 
     public void start() {
         // 创建/清空 debug jimple
-        File debugJimple = new File(ABuilderServerConfig.v().getProject(), "debugjimple");
+        File debugJimple = new File(database+"/"+projectId, "debugjimple");
         if (!debugJimple.exists()) {
             debugJimple.mkdir();
         } else {
             // 只有first为true时才能清空
-            if (ABuilderServerConfig.v().isFirst()) {
+            if (first) {
                 try {
                     FileUtils.cleanDirectory(debugJimple);
                 } catch (IOException e) {

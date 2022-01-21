@@ -17,16 +17,17 @@ import xmu.wrxlab.abuilder.ABuilderServerConfig;
 // 插桩
 public class AntranceInsTransform {
     /**
-     * 编译时统计, log id->log sig, 用于给每个桩一个id, 运行时只需要向AntranceIns.stmtTable对应位置写1即可, 提高效率.
-     * stmtTableSize为logIdSig大小;
-     * 最终会将logIdSig输出到项目目录的logIdSig.txt中, 用于解码运行时的01日志;
-     * sig格式: methodSig@jid@sid@type@value"(jid:语句在函数中的字节码id, sid:语句在文件中的源码行,
-     * type目前只考虑了branch(br), value 0表示false/default分支, >=1表示true/各个case分支),
-     * 特别地, 对于每个函数的入口插桩, 只记录methodSig.
-     * 重要: gradle插件可能把classes分成多个文件, 多次调用soot, 不记录上次状态的话logIdSig会发生严重错误,
-     * 因此这里用static, 只在first清空(写文件每次也是覆盖写)
+     * Instrumentor传入
      */
-    private static Map<Integer, String> logIdSig;
+    private String database;
+    /**
+     * Instrumentor传入
+     */
+    private String projectId;
+    /**
+     * Instrumentor传入
+     */
+    private Map<Integer, String> logIdSig;
     /**
      * AntranceIns: int[] StmtTable
      */
@@ -52,11 +53,12 @@ public class AntranceInsTransform {
      */
     private final NopStmt nopStmt;
 
-    public AntranceInsTransform(ArrayList<SootClass> myClasses, SootClass antranceIns) {
-        // 只在first清空
-        if (ABuilderServerConfig.v().isFirst()) {
-            logIdSig = new HashMap<>();
-        }
+    public AntranceInsTransform(ArrayList<SootClass> myClasses, SootClass antranceIns,
+                                String database, String projectId,
+                                Map<Integer, String> logIdSig) {
+        this.database = database;
+        this.projectId = projectId;
+        this.logIdSig = logIdSig;
         stmtTable = antranceIns.getFieldByName("stmtTable");
         setStmtTable2 = antranceIns.getMethodByName("setStmtTable2");
         this.myClasses = myClasses;
@@ -102,12 +104,10 @@ public class AntranceInsTransform {
                 } // end of while stmtIt.hasNext()
             } // end of while methodIterator.hasNext()
         } // end of for curClass
-        //  配置stmtTableSize
-        ABuilderServerConfig.v().setStmtTableSize(logIdSig.size() + 1);
-        // 将logIdSig输出到项目目录的logIdSig.txt中, 用于解码运行时的01日志
+        // 将logIdSig输出到项目目录的logIdSig.txt中
         try {
             BufferedWriter out = new BufferedWriter(new FileWriter(
-                    new File(ABuilderServerConfig.v().getProject(), "logIdSig.txt")));
+                    new File(database+"/"+projectId, "logIdSig.txt")));
             for (Map.Entry<Integer, String> entry : logIdSig.entrySet()) {
                 out.write(entry.getKey() + " " + entry.getValue() + "\n");
             }

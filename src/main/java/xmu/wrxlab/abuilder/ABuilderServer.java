@@ -62,18 +62,18 @@ public class ABuilderServer extends NanoHTTPD {
             }
             oneSoot.set(true);
 
-            // 根据参数进行相关配置
-            ABuilderServerConfig.v().setDatabase(params.get("database"));
-            ABuilderServerConfig.v().setProjectId(params.get("projectId"));
+            // 解析参数
+            String database = params.get("database");
+            String projectId = params.get("projectId");
             String inputPath = params.get("inputPath");
             String outputPath = params.get("outputPath");
             String sootId = params.get("sootId");
-            ABuilderServerConfig.v().setFirst(sootId.equals("0"));
+            boolean first = sootId.equals("0");
 
             // 1. 将antrance ins拷贝到inputPath下
             System.out.println("[antrance builder server] copy antrance ins to " + inputPath);
-            for (String antranceIns : ABuilderServerConfig.v().getAntranceInses()) {
-                File kernelIns = new File(ABuilderServerConfig.v().getKernel(), antranceIns + ".class");
+            for (String antranceIns : Instrumentor.antranceInses) {
+                File kernelIns = new File(database+"/kernel", antranceIns + ".class");
                 try {
                     FileUtils.copyFile(kernelIns, new File(inputPath, antranceIns + ".class"));
                 } catch (IOException e) {
@@ -84,8 +84,8 @@ public class ABuilderServer extends NanoHTTPD {
             // 2. 启动soot进行插桩, 注意soot源码很多地方用了System.exit(), 遇到这种情况要重启服务
             System.out.println("==================================================");
             System.out.println("[antrance builder server] Start");
-            System.out.println("[database] " + ABuilderServerConfig.v().getDatabase());
-            System.out.println("[projectId] " + ABuilderServerConfig.v().getProjectId());
+            System.out.println("[database] " + database);
+            System.out.println("[projectId] " + projectId);
             System.out.println("[inputPath] " + inputPath);
             System.out.println("[outputPath] " + outputPath);
             System.out.println("[sootId] " + sootId);
@@ -102,7 +102,7 @@ public class ABuilderServer extends NanoHTTPD {
                     "-keep-line-number"
             };
             // 将自定义pack插入wjtp, 开启静态分析+字节码修改
-            Instrumentor hzyInstrumentor = new Instrumentor();
+            Instrumentor hzyInstrumentor = new Instrumentor(database, projectId, first);
             PackManager.v().getPack("wjtp").add(new Transform("wjtp.myTrans", hzyInstrumentor));
             soot.Main.main(args);
 

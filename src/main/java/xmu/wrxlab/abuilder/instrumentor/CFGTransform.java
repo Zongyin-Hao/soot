@@ -29,13 +29,28 @@ import xmu.wrxlab.abuilder.utils.SimpleJson;
  * <p> 由于做了分文件保存, 结构上也没有压缩的必要了, 直接按照soot内置的结构信息进行打印
  */
 public class CFGTransform {
+    /**
+     * Instrumentor传入
+     */
+    private String database;
+    /**
+     * Instrumentor传入
+     */
+    private String projectId;
+    /**
+     * Instrumentor传入
+     */
+    private boolean first;
     private final ArrayList<SootClass> myClasses;
     /**
      * 用于关联语句和对应的字节码行号, 每遍历到一个新函数时会初始化
      */
     private Map<Unit, Integer> stmt_id;
 
-    public CFGTransform(ArrayList<SootClass> myClasses) {
+    public CFGTransform(ArrayList<SootClass> myClasses, String database, String projectId, boolean first) {
+        this.database = database;
+        this.projectId = projectId;
+        this.first = first;
         this.myClasses = myClasses;
     }
 
@@ -49,12 +64,12 @@ public class CFGTransform {
 
     public void start() {
         // 创建/清空 cfg
-        File cfg = new File(ABuilderServerConfig.v().getProject(), "cfg");
+        File cfg = new File(database+"/"+projectId, "cfg");
         if (!cfg.exists()) {
             cfg.mkdir();
         } else {
             // 只有first为true时才能清空
-            if (ABuilderServerConfig.v().isFirst()) {
+            if (first) {
                 try {
                     FileUtils.cleanDirectory(cfg);
                 } catch (IOException e) {
