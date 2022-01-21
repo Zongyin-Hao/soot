@@ -9,12 +9,9 @@ import java.util.Iterator;
 
 import org.apache.commons.io.FileUtils;
 import soot.*;
-import soot.jimple.AssignStmt;
 import soot.jimple.Stmt;
-import soot.jimple.internal.JArrayRef;
 import soot.tagkit.LineNumberTag;
 import soot.util.Chain;
-import xmu.wrxlab.abuilder.ABuilderServerConfig;
 
 /**
  * 生成插桩后的jimple字节码目录, 用于调试
