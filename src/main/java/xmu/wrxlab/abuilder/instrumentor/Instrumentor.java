@@ -68,7 +68,7 @@ public class Instrumentor extends SceneTransformer {
                     Integer logId = Integer.parseInt(sp[0]);
                     StringBuilder sb = new StringBuilder(sp[1]);
                     for (int i = 2; i < sp.length; i++) {
-                        sb.append(sp[i]);
+                        sb.append(" "+sp[i]);
                     }
                     String sig = sb.toString();
                     logIdSig.put(logId, sig);
